@@ -1,0 +1,29 @@
+﻿<Properties StartupConfiguration="{BBB240F4-8766-645F-2410-D1228A4C575B}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GridMgr.cs">
+    <Files>
+      <File FileName="Assets/Scripts/Grid Mgr.cs" Line="64" Column="13" />
+      <File FileName="Assets/Scripts/Node Mgr.cs" Line="5" Column="21" />
+      <File FileName="Assets/Scripts/Pathfinding Mgr.cs" Line="7" Column="5" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Slacker" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Scripts" expanded="True">
+                <Node name="GridMgr.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="ae24d877-9198-4b98-9777-dccae3c1107d" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
