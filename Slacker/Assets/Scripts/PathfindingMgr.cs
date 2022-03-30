@@ -4,88 +4,103 @@ using UnityEngine;
 
 public class PathfindingMgr : MonoBehaviour
 {
-    GridMgr gridReference;//reference to grid class
-    public Transform startPosition;//start position of pathfind
-    public Transform targetPosition;//target position of pathfind
+
+    GridMgr gridReference;//reference to the grid class
+    public Transform startPosition;//Starting position to pathfind from
+    public Transform targetPosition;//target position for pathfind
+
 
     private void Awake()
     {
-        gridReference = GetComponent<GridMgr>();//get reference to grid
+        gridReference = GetComponent<GridMgr>();//Get a reference to the game manager
     }
 
-    // Update is called once per frame
-    void Update()
+
+
+
+
+    private void Update()
     {
-        FindPath(startPosition.position, targetPosition.position);//find path to target
+        FindPath(startPosition.position, targetPosition.position);//Find a path to the goal
     }
 
     void FindPath(Vector3 sPos, Vector3 tPos)
     {
-        NodeMgr startNode = gridReference.nodeFromPoint(sPos);//gets node closest to start
-        NodeMgr targetNode = gridReference.nodeFromPoint(tPos);//gets node closest from target
+        NodeMgr startNode = gridReference.GetClosestNode(sPos);//Gets the node closest to the starting position
+        NodeMgr targetNode = gridReference.GetClosestNode(tPos);//Gets the node closest to the target position
 
-        List<NodeMgr> openList = new List<NodeMgr>();
-        HashSet<NodeMgr> closedList = new HashSet<NodeMgr>();
+        List<NodeMgr> OpenList = new List<NodeMgr>();//List of nodes for the open list
+        HashSet<NodeMgr> ClosedList = new HashSet<NodeMgr>();//closed list
 
-        openList.Add(startNode);//add starting node to open list to start program
+        OpenList.Add(startNode);//Add the starting node to the open list
 
-        while (openList.Count > 0)//while there is something in open list
+        while (OpenList.Count > 0)//While something in open list
         {
-            NodeMgr currentNode = openList[0];//create a node and set it to first item
-            for (int i = 1; i < openList.Count; i++)//loop through open list
+            NodeMgr currentNode = OpenList[0];
+            for (int i = 1; i < OpenList.Count; i++)
             {
-                if (openList[i].FCost < currentNode.FCost || openList[i].FCost == currentNode.FCost && openList[i].hCost < currentNode.hCost)
+                if (OpenList[i].FCost < currentNode.FCost || OpenList[i].FCost == currentNode.FCost && OpenList[i].hCost < currentNode.hCost)//If the f cost of that object is less than or equal to the f cost of the current node
                 {
-                    currentNode = openList[i];//set the current node to object
+
+
+                    currentNode = OpenList[i];
                 }
             }
+            OpenList.Remove(currentNode);//Remove that from the open list
+            ClosedList.Add(currentNode);//And add it to the closed list
 
-            openList.Remove(currentNode);//remove from open list
-            closedList.Add(currentNode);//add to closed list
-
-            if (currentNode == targetNode)//if node is same as target node
+            if (currentNode == targetNode)//If current node is same as target
             {
                 GetFinalPath(startNode, targetNode);//get final path
             }
 
-            foreach (NodeMgr neighborNode in gridReference.getNeighbors(currentNode))//loop through each neighbor of current node
+            foreach (NodeMgr neighborNode in gridReference.GetNeighboringNodes(currentNode))//traverse neighbors
             {
-                if (!neighborNode.isWall || closedList.Contains(neighborNode))//if neighbor is wall or has already been checked
+                if (!neighborNode.isWall || ClosedList.Contains(neighborNode))//If the neighbor is a wall or has already checked
                 {
-                    continue;//skip
+                    continue;//Skip
                 }
-                int moveCost = currentNode.gCost + GetManhattenDistance(currentNode, neighborNode);//get the f cost of that neightbor
+                int MoveCost = currentNode.gCost + GetManhattenDistance(currentNode, neighborNode);//Get the F cost of neighbor
 
-                if(moveCost < neighborNode.gCost || !openList.Contains(neighborNode))//if f cost is greater than the g cost or it is not in open list
+                if (MoveCost < neighborNode.gCost || !OpenList.Contains(neighborNode))//If the f cost is greater than the g cost or it is not in the open list
                 {
-                    neighborNode.gCost = moveCost;
+                    neighborNode.gCost = MoveCost;//Set the g cost to the f cost
                     neighborNode.hCost = GetManhattenDistance(neighborNode, targetNode);
-                    neighborNode.parentNode = currentNode;//retrace steps
+                    neighborNode.parentNode = currentNode;//set parent to retrace
 
-                    if (!openList.Contains(neighborNode))//if neighbor is not in open list
+                    if (!OpenList.Contains(neighborNode))
                     {
-                        openList.Add(neighborNode);
+                        OpenList.Add(neighborNode);//Add it to the list
                     }
                 }
             }
+
         }
     }
 
+
+
     void GetFinalPath(NodeMgr sNode, NodeMgr tNode)
     {
-        List<NodeMgr> finalPath = new List<NodeMgr>();//list to hold path
-        NodeMgr currentNode = tNode;
+        List<NodeMgr> FinalPath = new List<NodeMgr>();//list for final path
+        NodeMgr CurrentNode = tNode;//store current ode
 
-        while(currentNode != sNode)//loop to work through each node to the begining
+        while (CurrentNode != sNode)
         {
-            finalPath.Add(currentNode);
-            currentNode = currentNode.parentNode;
+
+
+            FinalPath.Add(CurrentNode);//add node to final path
+            CurrentNode = CurrentNode.parentNode;//move to parent node
         }
 
-        finalPath.Reverse();//reverse path to get correct order
 
-        gridReference.finalPath = finalPath;//set final path
-        
+
+        FinalPath.Reverse();//Reverse the path to get the correct order
+
+        gridReference.finalPath = FinalPath;
+       
+
+
     }
 
     int GetManhattenDistance(NodeMgr aNode, NodeMgr bNode)
@@ -93,6 +108,6 @@ public class PathfindingMgr : MonoBehaviour
         int x = Mathf.Abs(aNode.gridX - bNode.gridX);//x1-x2
         int y = Mathf.Abs(aNode.gridY - bNode.gridY);//y1-y2
 
-        return x + y;//return sum
+        return x + y;//Return the sum
     }
 }

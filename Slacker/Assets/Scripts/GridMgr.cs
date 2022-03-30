@@ -4,162 +4,164 @@ using UnityEngine;
 
 public class GridMgr : MonoBehaviour
 {
-    public Transform startPos; //this is the start of pathfinding location
-    public LayerMask wallMask; //this is the mask that the program looks for when trying to find obstructions in path
-    public Vector2 gridSize;//store width and heigth of grid
-    public float nodeRadius;//how big each sqaure is
-    public float distanceBetweenNodes;//distance that grid sqaures spawn from each other
 
-    NodeMgr[,] nodeArray;//array of nodes for A star
+    public Transform startPosition;//start position for pathfinding
+    public LayerMask WallMask;//layer mask for walls
+    public Vector2 gridSize;//store width and height of grid
+    public float nodeRadius;//radius of node
+    public float disBetweenNodes;//distance between squares
 
-    public List<NodeMgr> finalPath;
+    NodeMgr[,] nodeArray;//The array of nodes that the A Star algorithm uses.
+    public List<NodeMgr> finalPath;//final path of a star
 
-    float nodeDiameter;//twice the radius
-    int gridWidth;//width of grid
-    int gridHeight;//heigh of grid
 
-    
+    float nodeDiameter;
+    int sizeX;//size of width
+    int sizeY;//Size of heigh
 
-    // Start is called before the first frame update
-    void Start()
+
+
+  
+
+    private void Start()
     {
-        nodeDiameter = nodeRadius * 2;
-        gridWidth = Mathf.RoundToInt(gridSize.x / nodeDiameter);//divide grid word coords by diameter to get size of graph in array units
-        gridHeight = Mathf.RoundToInt(gridSize.y / nodeDiameter);//^
 
-        CreateGrid();//draw grid
+
+        nodeDiameter = nodeRadius * 2;
+        sizeX = Mathf.RoundToInt(gridSize.x / nodeDiameter);//Divide the grid coord by the diameter to get the size of the graph in array units.
+        sizeY = Mathf.RoundToInt(gridSize.y / nodeDiameter);//^^
+       
+        CreateGrid();//create grid
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         CreateGrid();
+       
     }
 
     void CreateGrid()
     {
-        nodeArray = new NodeMgr[gridWidth, gridHeight];//declare nodes
-        Vector3 bottomLeft = transform.position - Vector3.right * gridSize.x / 2 - Vector3.forward * gridSize.y / 2; //get world position of bottom left of grid
-        for (int x = 0; x < gridWidth; x++)//loop through array of nodes
+        nodeArray = new NodeMgr[sizeX, sizeY];
+        Vector3 bottomLeft = transform.position - Vector3.right * gridSize.x / 2 - Vector3.forward * gridSize.y / 2;//get position of bottom left of grid
+        for (int x = 0; x < sizeX; x++)//Loop through the array of nodes.
         {
-            for (int y = 0; y < gridHeight; y++)//loop through array of nodes
+            for (int y = 0; y < sizeY; y++)//Loop through the array of nodes
             {
-                Vector3 worldPosition = bottomLeft + Vector3.right * (x * nodeDiameter + nodeRadius) + Vector3.forward * (y * nodeDiameter + nodeRadius);//world coords of bottom left
-                bool wall = true;//make the node a wall
+                Vector3 worldPoint = bottomLeft + Vector3.right * (x * nodeDiameter + nodeRadius) + Vector3.forward * (y * nodeDiameter + nodeRadius);//get coord of bottom left
+                bool Wall = true;//make wall
 
-                //if node is obstructed
-                //quick check of collision with current node
-                //if colliding with wall
-                if(Physics.CheckSphere(worldPosition, nodeRadius, wallMask))
+                //checks if it is not being obstructed by wall
+                if (Physics.CheckSphere(worldPoint, nodeRadius, WallMask))
                 {
-                    wall = false;//object not a wall
+                    Wall = false;//Object is not a wall
                 }
 
-                nodeArray[x, y] = new NodeMgr(wall, worldPosition, x, y);//create a new node in array
+                nodeArray[x, y] = new NodeMgr(Wall, worldPoint, x, y);//Create a new node in the array.
             }
         }
     }
 
-    //draws gizmo wireframe
-    private void OnDrawGizmos()
+    //gets neighbor nodes
+    public List<NodeMgr> GetNeighboringNodes(NodeMgr neighbor)
     {
-        Gizmos.DrawWireCube(transform.position, new Vector3(gridSize.x, 1, gridSize.y));//draw a wire cube
-        if (nodeArray !=null)//if grid is not empty
+        List<NodeMgr> neighborList = new List<NodeMgr>();//list of neighbors
+        int checkX;//checks if x is in range
+        int checkY;//checks if y is in range
+
+        //Check the right side of the current node.
+        checkX = neighbor.gridX + 1;
+        checkY = neighbor.gridY;
+        if (checkX >= 0 && checkX < sizeX)//if in range
         {
-            foreach (NodeMgr n in nodeArray)
+            if (checkY >= 0 && checkY < sizeY)//if in range
             {
-                if (n.isWall)//if node is a wall
-                {
-                    Gizmos.color = Color.red;
-                }
-                else//not a wall
-                {
-                    Gizmos.color = Color.blue;
-                }
-
-                if(finalPath != null)//if final path not empty
-                {
-                    if (finalPath.Contains(n))//if node is in final path
-                    {
-                        Gizmos.color = Color.green;
-                    }
-                }
-
-                Gizmos.DrawCube(n.nodePos, Vector3.one * (nodeDiameter - distanceBetweenNodes));//draw node at node position
+                neighborList.Add(nodeArray[checkX, checkY]);//Add the grid to the available neighbors list
             }
         }
+        //Check the Left side of the current node.
+        checkX = neighbor.gridX - 1;
+        checkY = neighbor.gridY;
+        if (checkX >= 0 && checkX < sizeX)///if in range
+        {
+            if (checkY >= 0 && checkY < sizeY)//if in range
+            {
+                neighborList.Add(nodeArray[checkX, checkY]);//Add the grid to the available neighbors list
+            }
+        }
+        //Check the Top side of the current node.
+        checkX = neighbor.gridX;
+        checkY = neighbor.gridY + 1;
+        if (checkX >= 0 && checkX < sizeX)///if in range
+        {
+            if (checkY >= 0 && checkY < sizeY)//if in range
+            {
+                neighborList.Add(nodeArray[checkX, checkY]);//Add the grid to the available neighbors list
+            }
+        }
+        //Check the Bottom side of the current node.
+        checkX = neighbor.gridX;
+        checkY = neighbor.gridY - 1;
+        if (checkX >= 0 && checkX < sizeX)///if in range
+        {
+            if (checkY >= 0 && checkY < sizeY)//if in range
+            {
+                neighborList.Add(nodeArray[checkX, checkY]);//Add the grid to the available neighbors list
+            }
+        }
+
+        return neighborList;//Return the neighbors list.
     }
 
-    //gets neighbor nodes of given node
-    public List<NodeMgr> getNeighbors(NodeMgr givenNode)
-    {
-        List<NodeMgr> neighborList = new List<NodeMgr>();//list of all neighbors
-        int checkX;//used to check if posX is in range of node array
-        int checkY;//used to check if posY is in range of node array
-
-        /////////////////
-        ///code below could probably be optimized
-        ////////////////
-
-        //check the right side of the current node
-        checkX = givenNode.gridX + 1;
-        checkY = givenNode.gridY;
-        if (checkX >= 0 && checkX < gridWidth)//if in range
-        {
-            if (checkY >=0 && checkY < gridHeight)//if in range
-            {
-                neighborList.Add(nodeArray[checkX, checkY]);//add to available neighbors
-            }
-        }
-
-        //check the left side of the current node
-        checkX = givenNode.gridX - 1;
-        checkY = givenNode.gridY;
-        if (checkX >= 0 && checkX < gridWidth)//if in range
-        {
-            if (checkY >= 0 && checkY < gridHeight)//if in range
-            {
-                neighborList.Add(nodeArray[checkX, checkY]);//add to available neighbors
-            }
-        }
-
-        //check the top side of the current node
-        checkX = givenNode.gridX;
-        checkY = givenNode.gridY + 1;
-        if (checkX >= 0 && checkX < gridWidth)//if in range
-        {
-            if (checkY >= 0 && checkY < gridHeight)//if in range
-            {
-                neighborList.Add(nodeArray[checkX, checkY]);//add to available neighbors
-            }
-        }
-
-        //check the bottom side of the current node
-        checkX = givenNode.gridX;
-        checkY = givenNode.gridY - 1;
-        if (checkX >= 0 && checkX < gridWidth)//if in range
-        {
-            if (checkY >= 0 && checkY < gridHeight)//if in range
-            {
-                neighborList.Add(nodeArray[checkX, checkY]);//add to available neighbors
-            }
-        }
-
-        return neighborList;//return list of neighbors
-    }
-
-    //gets closest node from given position
-    public NodeMgr nodeFromPoint(Vector3 point)
+    //Gets the closest node to the given world position.
+    public NodeMgr GetClosestNode(Vector3 point)
     {
         float xPos = ((point.x + gridSize.x / 2) / gridSize.x);
-        float yPos = ((point.y + gridSize.y / 2) / gridSize.y);
+        float yPos = ((point.z + gridSize.y / 2) / gridSize.y);
 
         xPos = Mathf.Clamp01(xPos);
         yPos = Mathf.Clamp01(yPos);
 
-        int x = Mathf.RoundToInt((gridWidth - 1) * xPos);
-        int y = Mathf.RoundToInt((gridHeight - 1) * yPos);
+        int x = Mathf.RoundToInt((sizeX - 1) * xPos);
+        int y = Mathf.RoundToInt((sizeY - 1) * yPos);
 
         return nodeArray[x, y];
+    }
+
+
+    //Function that draws the wireframe
+    private void OnDrawGizmos()
+    {
+
+        Gizmos.DrawWireCube(transform.position, new Vector3(gridSize.x, 1, gridSize.y));//Draw a wire cube with the given dimensions 
+
+        if (nodeArray != null)
+        {
+            foreach (NodeMgr n in nodeArray)//Loop through every node in the grid
+            {
+                if (n.isWall)//If the current node is a wall node
+                {
+                    Gizmos.color = Color.white;//Set the color to white
+                }
+                else
+                {
+                    Gizmos.color = Color.blue;//Set the color to blue
+                }
+
+
+                if (finalPath != null)//If the final path is not empty
+                {
+                    if (finalPath.Contains(n))//If the current node is in the final path
+                    {
+                        Gizmos.color = Color.red;//Set the color to red
+                    }
+
+                }
+
+
+                Gizmos.DrawCube(n.nodePos, Vector3.one * (nodeDiameter - disBetweenNodes));//draw node
+
+            }
+        }
     }
 }
