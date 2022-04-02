@@ -54,13 +54,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\GridMgr.cs" />
+    <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\NodeMgr.cs" />
     <Compile Include="Assets\Scripts\PathfindingMgr.cs" />
-    <Compile Include="Assets\Scripts\AStar Stuff\AStarMgr.cs" />
+    <Compile Include="Assets\Scripts\AStar Stuff\AstarMgr.cs" />
+    <Compile Include="Assets\Scripts\AIMgr.cs" />
     <Compile Include="Assets\Scripts\AStar Stuff\Route.cs" />
     <Compile Include="Assets\Scripts\AStar Stuff\Node.cs" />
-    <Compile Include="Assets\Scripts\AIMgr.cs" />
-    <Compile Include="Assets\Scripts\PlayerController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
