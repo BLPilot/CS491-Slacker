@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour
 {
     public CharacterController controller;
 
+    public Animator animations;
+
     public float speed = 5f;
     public float turnSpeed = 180f;
 
@@ -30,9 +32,11 @@ public class PlayerController : MonoBehaviour
         {
             //transform.forward = move;
 
-            Quaternion toRotate = Quaternion.LookRotation(move, Vector3.up);
+            animations.SetBool("Walking", true);
 
+            Quaternion toRotate = Quaternion.LookRotation(move, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotate, turnSpeed * Time.deltaTime);
         }
+        else { animations.SetBool("Walking", false); } 
     }
 }
