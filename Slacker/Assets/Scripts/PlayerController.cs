@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     public float speed = 5f;
     public float turnSpeed = 180f;
 
+    public Camera mainCamera;
+
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
@@ -37,6 +39,8 @@ public class PlayerController : MonoBehaviour
             Quaternion toRotate = Quaternion.LookRotation(move, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotate, turnSpeed * Time.deltaTime);
         }
-        else { animations.SetBool("Walking", false); } 
+        else { animations.SetBool("Walking", false); }
+
+        mainCamera.transform.position = new Vector3(transform.position.x, mainCamera.transform.position.y, transform.position.z);
     }
 }

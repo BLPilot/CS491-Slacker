@@ -62,10 +62,10 @@
     <Compile Include="Assets\Scripts\PathfindingMgr.cs" />
     <Compile Include="Assets\Scripts\AStar Stuff\AStarMgr.cs" />
     <Compile Include="Assets\Scripts\AIMgr.cs" />
+    <Compile Include="Assets\ObjectInteraction.cs" />
     <Compile Include="Assets\Scripts\Movement.cs" />
     <Compile Include="Assets\Scripts\AStar Stuff\Route.cs" />
     <Compile Include="Assets\Scripts\AStar Stuff\Node.cs" />
-    <Compile Include="Assets\ObjectInteraction.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
