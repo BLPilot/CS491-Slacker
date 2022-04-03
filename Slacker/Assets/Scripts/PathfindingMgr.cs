@@ -21,6 +21,8 @@ public class PathfindingMgr : MonoBehaviour
 
     private void Update()
     {
+        //Debug.Log("START POSITION: " + startPosition.position);
+        //Debug.Log("TARGET POSITION: " + targetPosition.position);
         FindPath(startPosition.position, targetPosition.position);//Find a path to the goal
     }
 
