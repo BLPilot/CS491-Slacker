@@ -61,6 +61,7 @@
     <Compile Include="Assets\Scripts\AIMgr.cs" />
     <Compile Include="Assets\Scripts\AStar Stuff\Route.cs" />
     <Compile Include="Assets\Scripts\AStar Stuff\Node.cs" />
+    <Compile Include="Assets\Scripts\Entity.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
