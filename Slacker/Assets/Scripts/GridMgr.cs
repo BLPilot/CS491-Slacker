@@ -65,6 +65,8 @@ public class GridMgr : MonoBehaviour
     //gets neighbor nodes
     public List<NodeMgr> GetNeighboringNodes(NodeMgr neighbor)
     {
+        // Commenting out code while testing something
+        /*
         List<NodeMgr> neighborList = new List<NodeMgr>();//list of neighbors
         int checkX;//checks if x is in range
         int checkY;//checks if y is in range
@@ -111,6 +113,29 @@ public class GridMgr : MonoBehaviour
         }
 
         return neighborList;//Return the neighbors list.
+
+        */
+
+        List<NodeMgr> neighbours = new List<NodeMgr>();
+
+        for (int x = -1; x <= 1; x++)
+        {
+            for (int y = -1; y <= 1; y++)
+            {
+                if (x == 0 && y == 0)
+                    continue;
+
+                int checkX = neighbor.gridX + x;
+                int checkY = neighbor.gridY + y;
+
+                if (checkX >= 0 && checkX < sizeX && checkY >= 0 && checkY < sizeY)
+                {
+                    neighbours.Add(nodeArray[checkX, checkY]);
+                }
+            }
+        }
+
+        return neighbours;
     }
 
     //Gets the closest node to the given world position.
