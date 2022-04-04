@@ -54,19 +54,20 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Entity.cs" />
-    <Compile Include="Assets\Scripts\UnitAI.cs" />
+    <Compile Include="Assets\Scripts\EmptyScripts\UnitAI.cs" />
     <Compile Include="Assets\Scripts\GridMgr.cs" />
     <Compile Include="Assets\Scripts\Heading.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\NodeMgr.cs" />
     <Compile Include="Assets\Scripts\PathfindingMgr.cs" />
     <Compile Include="Assets\Scripts\AStar Stuff\AstarMgr.cs" />
-    <Compile Include="Assets\Scripts\AIMgr.cs" />
+    <Compile Include="Assets\Scripts\EmptyScripts\AIMgr.cs" />
     <Compile Include="Assets\Scripts\ObjectInteraction.cs" />
-    <Compile Include="Assets\Scripts\Movement.cs" />
+    <Compile Include="Assets\Scripts\EmptyScripts\Movement.cs" />
     <Compile Include="Assets\Scripts\AStar Stuff\Route.cs" />
     <Compile Include="Assets\Scripts\AStar Stuff\Node.cs" />
     <Compile Include="Assets\Scripts\FollowFromAbove.cs" />
+    <Compile Include="Assets\BossAI.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

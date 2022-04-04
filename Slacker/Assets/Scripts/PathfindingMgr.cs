@@ -9,6 +9,8 @@ public class PathfindingMgr : MonoBehaviour
     public Transform startPosition;//Starting position to pathfind from
     public Transform targetPosition;//target position for pathfind
 
+    public BossAI boss;
+
 
     private void Awake()
     {
@@ -23,7 +25,12 @@ public class PathfindingMgr : MonoBehaviour
     {
         //Debug.Log("START POSITION: " + startPosition.position);
         //Debug.Log("TARGET POSITION: " + targetPosition.position);
-        FindPath(startPosition.position, targetPosition.position);//Find a path to the goal
+
+        if (boss.detectionRangeCollision)
+        {
+            FindPath(startPosition.position, targetPosition.position);//Find a path to the goal
+        }
+        
     }
 
     void FindPath(Vector3 sPos, Vector3 tPos)

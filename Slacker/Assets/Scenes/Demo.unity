@@ -2557,6 +2557,7 @@ GameObject:
   - component: {fileID: 1119660675}
   - component: {fileID: 1119660676}
   - component: {fileID: 1119660677}
+  - component: {fileID: 1119660678}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Untagged
@@ -2610,6 +2611,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPosition: {fileID: 1415462744}
   targetPosition: {fileID: 1119660675}
+--- !u!114 &1119660678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1119660674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4ecc0793a457844fb7f6a7913d2427e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1122798018
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3275,6 +3288,7 @@ GameObject:
   - component: {fileID: 1415462746}
   - component: {fileID: 1415462745}
   - component: {fileID: 1415462747}
+  - component: {fileID: 1415462748}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -3346,6 +3360,19 @@ MonoBehaviour:
   animations: {fileID: 1585788320}
   speed: 5
   turnSpeed: 270
+--- !u!65 &1415462748
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1415462743}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 5.2, z: 1}
+  m_Center: {x: 0, y: 3, z: 0}
 --- !u!1001 &1452510881
 PrefabInstance:
   m_ObjectHideFlags: 0

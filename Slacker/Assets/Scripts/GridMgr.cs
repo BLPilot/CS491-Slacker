@@ -19,6 +19,8 @@ public class GridMgr : MonoBehaviour
     int sizeX;//size of width
     int sizeY;//Size of heigh
 
+  
+
 
 
   
