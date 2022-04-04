@@ -31,9 +31,15 @@ public class BossAI : MonoBehaviour
     {
         if(collision.gameObject.name == "Player")
         {
-            detectionRangeCollision = false;
+            StartCoroutine(DelayCollisionExit());
+            
         }
     }
 
+    IEnumerator DelayCollisionExit()
+    {
+        yield return new WaitForSeconds(5);
+        detectionRangeCollision = false;
+    }
 
 }
