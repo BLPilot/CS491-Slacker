@@ -107,7 +107,7 @@ public class PathfindingMgr : MonoBehaviour
         FinalPath.Reverse();//Reverse the path to get the correct order
 
         gridReference.finalPath = FinalPath;
-       
+        BossAI.inst.finalPath = FinalPath;
 
 
     }
