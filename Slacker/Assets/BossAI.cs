@@ -4,15 +4,35 @@ using UnityEngine;
 
 public class BossAI : MonoBehaviour
 {
+    public static BossAI inst;
+
+    public void Awake()
+    {
+        inst = this;
+    }
+
     //if collision it is true
     public bool detectionRangeCollision = false;
 
 
 
-    private void OnTriggerEnter(Collision collision)
+
+    private void OnTriggerEnter(Collider collision)
     {
-        detectionRangeCollision = true;
-        Debug.Log("Collided");
+        if(collision.gameObject.name == "Player")
+        {
+            detectionRangeCollision = true;
+            Debug.Log("Collided");
+        }
+        
+    }
+
+    private void OnTriggerExit(Collider collision)
+    {
+        if(collision.gameObject.name == "Player")
+        {
+            detectionRangeCollision = false;
+        }
     }
 
 
