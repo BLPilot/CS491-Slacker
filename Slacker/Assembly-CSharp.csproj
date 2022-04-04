@@ -61,7 +61,7 @@
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\NodeMgr.cs" />
     <Compile Include="Assets\Scripts\PathfindingMgr.cs" />
-    <Compile Include="Assets\Scripts\AStar Stuff\AstarMgr.cs" />
+    <Compile Include="Assets\Scripts\AStar Stuff\AStarMgr.cs" />
     <Compile Include="Assets\Scripts\EmptyScripts\AIMgr.cs" />
     <Compile Include="Assets\Scripts\ObjectInteraction.cs" />
     <Compile Include="Assets\Scripts\EmptyScripts\Movement.cs" />
@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\FollowFromAbove.cs" />
     <Compile Include="Assets\Scripts\AStar Stuff\Node.cs" />
     <Compile Include="Assets\GameOverCollision.cs" />
+    <Compile Include="Assets\Scripts\Interaction.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
