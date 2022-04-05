@@ -26,10 +26,8 @@ public class PathfindingMgr : MonoBehaviour
         //Debug.Log("START POSITION: " + startPosition.position);
         //Debug.Log("TARGET POSITION: " + targetPosition.position);
 
-        if (BossAI.inst.detectionRangeCollision)
-        {
-            FindPath(startPosition.position, targetPosition.position);//Find a path to the goal
-        }
+        FindPath(startPosition.position, targetPosition.position);//Find a path to the goal
+        
         
     }
 
