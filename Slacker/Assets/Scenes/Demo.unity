@@ -5293,7 +5293,7 @@ MonoBehaviour:
   WallMask:
     serializedVersion: 2
     m_Bits: 64
-  gridSize: {x: 75, y: 75}
+  gridSize: {x: 150, y: 150}
   nodeRadius: 1
   disBetweenNodes: 0.15
 --- !u!114 &2082107781
