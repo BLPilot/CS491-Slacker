@@ -19,7 +19,7 @@ public class BossAI : MonoBehaviour
     public float turnSpeed = 180f;
 
     //if ai should follow path
-    private bool followPath = false;
+    public bool followPath = false;
 
     //if collision it is true
     public bool detectionRangeCollision = false;
