@@ -55,7 +55,7 @@ public class BossAI : MonoBehaviour
     //move boss along path
     public void MoveAlongPath(List<NodeMgr> path)
     {
-        if(Vector3.Distance(finalPath[currentNodeIndex].nodePos, boss.transform.position) < 2.5)
+        if(Vector3.Distance(finalPath[currentNodeIndex].nodePos, boss.transform.position) < 10)
         {
             reached = true;
         }
@@ -66,10 +66,15 @@ public class BossAI : MonoBehaviour
             float x = finalPath[currentNodeIndex].nodePos.x;
             float y = finalPath[currentNodeIndex].nodePos.z;
 
-            Vector3 move = new Vector3(x,1, y);
+            Vector3 currentNodePos = new Vector3(finalPath[currentNodeIndex].nodePos.x, 0, finalPath[currentNodeIndex].nodePos.z);
+
+            Vector3 move = new Vector3(finalPath[currentNodeIndex].nodePos.x - boss.transform.position.x, 0, finalPath[currentNodeIndex].nodePos.z - boss.transform.position.z);//new Vector3(x,1, y);
+
             //move.Normalize();
 
-            controller.Move(move * speed * Time.deltaTime);
+            //controller.Move(move * speed * Time.deltaTime);
+
+            boss.transform.position = Vector3.MoveTowards(boss.transform.position, currentNodePos, speed * Time.deltaTime);
 
             Debug.Log(finalPath[currentNodeIndex].nodePos);
             Debug.Log("Moving to:" + move);
@@ -86,7 +91,7 @@ public class BossAI : MonoBehaviour
             }
             else { animations.SetBool("Walking", false); }
 
-            currentNodeIndex++;
+            //currentNodeIndex++;
             reached = false;
 
         }

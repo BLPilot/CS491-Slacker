@@ -4365,7 +4365,7 @@ MonoBehaviour:
   controller: {fileID: 1119660680}
   animations: {fileID: 1786962809}
   boss: {fileID: 1119660674}
-  speed: 4
+  speed: 7.5
   turnSpeed: 180
   detectionRangeCollision: 0
   currentNodeIndex: 0
@@ -8117,8 +8117,8 @@ Transform:
   - {fileID: 1020822058}
   - {fileID: 2021109036}
   - {fileID: 165594613}
-  - {fileID: 901084301}
   - {fileID: 439085648}
+  - {fileID: 901084301}
   m_Father: {fileID: 1572503272}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8673,7 +8673,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5011345857014045542, guid: 907af79891441904791605ca3542f0f0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 24.34
+      value: 4.09
       objectReference: {fileID: 0}
     - target: {fileID: 5011345857014045542, guid: 907af79891441904791605ca3542f0f0, type: 3}
       propertyPath: m_LocalRotation.w
