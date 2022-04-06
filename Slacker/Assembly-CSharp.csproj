@@ -71,7 +71,7 @@
     <Compile Include="Assets\Scripts\FollowFromAbove.cs" />
     <Compile Include="Assets\Scripts\AStar Stuff\Node.cs" />
     <Compile Include="Assets\Scripts\GameOverCollision.cs" />
-    <Compile Include="Assets\AudioPlayerMgr.cs" />
+    <Compile Include="Assets\Scripts\AudioPlayerMgr.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
