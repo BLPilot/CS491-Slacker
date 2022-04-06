@@ -7,7 +7,7 @@ public class Timer : MonoBehaviour
 {
 
     // Timer variables
-    float timer = 5;
+    float timer = 180;
     public int gameMinutes = 0;
     public int gameSeconds = 0;
     public TextMeshProUGUI stopwatch;
