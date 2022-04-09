@@ -39,12 +39,12 @@ public class BossAI : MonoBehaviour
     public void Awake()
     {
         inst = this;
-        
+
     }
 
     public void Update()
     {
-        
+
         if (followPath && currentNodeIndex < finalPath.Count)
         {
             MoveAlongPath(finalPath);
@@ -55,14 +55,15 @@ public class BossAI : MonoBehaviour
     //move boss along path
     public void MoveAlongPath(List<NodeMgr> path)
     {
-        if(Vector3.Distance(finalPath[currentNodeIndex].nodePos, boss.transform.position) < 10)
+        if (Vector3.Distance(finalPath[currentNodeIndex].nodePos, boss.transform.position) < 10)
         {
             reached = true;
         }
         //checks if it is within certain distance of next node before moving to next node
 
 
-        if (reached) {
+        if (reached)
+        {
             float x = finalPath[currentNodeIndex].nodePos.x;
             float y = finalPath[currentNodeIndex].nodePos.z;
 
@@ -100,24 +101,30 @@ public class BossAI : MonoBehaviour
     //checks if player enter detection zone
     private void OnTriggerStay(Collider collision)
     {
-        if(collision.gameObject.name == "Player")
+        if (collision.gameObject.name == "Player")
         {
             detectionRangeCollision = true;
             followPath = true;
             Debug.Log("Collided");
         }
-        
+
     }
 
     //checks if player exits detection zone
     private void OnTriggerExit(Collider collision)
     {
-        if(collision.gameObject.name == "Player")
+        if (collision.gameObject.name == "Player")
         {
-            
+
             StartCoroutine(DelayCollisionExit());
-            
+
         }
+    }
+
+    //called by coworkers
+    public void Snitch()
+    {
+        followPath = true;
     }
 
     //waits five seconds before forgeting player location
