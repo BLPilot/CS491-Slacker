@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GridMgr : MonoBehaviour
 {
+    public static GridMgr inst;
 
     public Transform startPosition;//start position for pathfinding
     public LayerMask WallMask;//layer mask for walls
@@ -19,11 +20,14 @@ public class GridMgr : MonoBehaviour
     int sizeX;//size of width
     int sizeY;//Size of heigh
 
-  
 
 
+    private void Awake()
+    {
+        inst = this;
+    }
 
-  
+
 
     private void Start()
     {
