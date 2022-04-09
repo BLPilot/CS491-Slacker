@@ -41,7 +41,7 @@ public class CoWorkers : MonoBehaviour
     public int currentNodeIndex = 0;
 
     //reached next node location
-    bool reached = true;    
+    bool reached = true;
 
     //random waypoint to reach
     int randomPoint;
@@ -49,7 +49,7 @@ public class CoWorkers : MonoBehaviour
     //is a snitcher
     public bool isSnitch;
 
-    
+
 
     public void Awake()
     {
@@ -66,7 +66,7 @@ public class CoWorkers : MonoBehaviour
 
     public void Update()
     {
-       
+
 
         if (followPath && currentNodeIndex < finalPath.Count)
         {
@@ -77,7 +77,7 @@ public class CoWorkers : MonoBehaviour
 
         ReachedWaypoint();
         GetWaypoint();
-         
+
     }
 
     //move boss along path
@@ -90,7 +90,8 @@ public class CoWorkers : MonoBehaviour
         //checks if it is within certain distance of next node before moving to next node
 
 
-        if (reached) {
+        if (reached)
+        {
             float x = finalPath[currentNodeIndex].nodePos.x;
             float y = finalPath[currentNodeIndex].nodePos.z;
 
@@ -127,7 +128,7 @@ public class CoWorkers : MonoBehaviour
 
     void GetWaypoint()
     {
-        
+
 
 
 
@@ -135,15 +136,15 @@ public class CoWorkers : MonoBehaviour
         finalPath = PathfindingMgr.inst.FindPathCW(CoWorker.transform.position, roomWaypoints[randomPoint].transform.position);
 
         followPath = true;
-        
+
 
         //checking the points coworker receives
-        
+
         foreach (NodeMgr n in finalPath)
         {
             Debug.Log(n.nodePos);
         }
-        
+
 
     }
 
@@ -151,20 +152,20 @@ public class CoWorkers : MonoBehaviour
     {
         if (Vector3.Distance(roomWaypoints[randomPoint].transform.position, CoWorker.transform.position) < 10)
         {
-            
+
             randomPoint = Random.Range(0, roomWaypoints.Count);
         }
     }
 
-    
+
     //checks if player enter detection zone
     private void OnTriggerStay(Collider collision)
     {
-        if(collision.gameObject.name == "Player" && isSnitch)
+        if (collision.gameObject.name == "Player" && isSnitch)
         {
             boss.Snitch();
         }
-        
+
     }
 
     /*
@@ -178,7 +179,6 @@ public class CoWorkers : MonoBehaviour
             
         }
     }
-
     //waits five seconds before forgeting player location
     IEnumerator DelayCollisionExit()
     {

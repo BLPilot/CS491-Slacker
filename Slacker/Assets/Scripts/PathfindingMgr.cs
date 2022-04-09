@@ -5,6 +5,9 @@ using UnityEngine;
 public class PathfindingMgr : MonoBehaviour
 {
 
+    public static PathfindingMgr inst;
+
+
     GridMgr gridReference;//reference to the grid class
     public Transform startPosition;//Starting position to pathfind from
     public Transform targetPosition;//target position for pathfind
@@ -12,8 +15,11 @@ public class PathfindingMgr : MonoBehaviour
 
 
 
+
+
     private void Awake()
     {
+        inst = this;
         gridReference = GetComponent<GridMgr>();//Get a reference to the game manager
     }
 
@@ -27,14 +33,14 @@ public class PathfindingMgr : MonoBehaviour
         //Debug.Log("TARGET POSITION: " + targetPosition.position);
 
         FindPath(startPosition.position, targetPosition.position);//Find a path to the goal
-        
-        
+
+
     }
 
     void FindPath(Vector3 sPos, Vector3 tPos)
     {
-        NodeMgr startNode = gridReference.GetClosestNode(sPos);//Gets the node closest to the starting position
-        NodeMgr targetNode = gridReference.GetClosestNode(tPos);//Gets the node closest to the target position
+        NodeMgr startNode = GridMgr.inst.GetClosestNode(sPos);//Gets the node closest to the starting position
+        NodeMgr targetNode = GridMgr.inst.GetClosestNode(tPos);//Gets the node closest to the target position
 
         List<NodeMgr> OpenList = new List<NodeMgr>();//List of nodes for the open list
         HashSet<NodeMgr> ClosedList = new HashSet<NodeMgr>();//closed list
@@ -112,9 +118,15 @@ public class PathfindingMgr : MonoBehaviour
 
     public List<NodeMgr> FindPathCW(Vector3 sPos, Vector3 tPos)
     {
+        Debug.Log("Hello");
+
         List<NodeMgr> FinalPath = new List<NodeMgr>();
+        Debug.Log("Creating Lists");
+
         NodeMgr startNode = gridReference.GetClosestNode(sPos);//Gets the node closest to the starting position
         NodeMgr targetNode = gridReference.GetClosestNode(tPos);//Gets the node closest to the target position
+
+        Debug.Log("Creating Lists");
 
         List<NodeMgr> OpenList = new List<NodeMgr>();//List of nodes for the open list
         HashSet<NodeMgr> ClosedList = new HashSet<NodeMgr>();//closed list

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GridMgr : MonoBehaviour
 {
+    public static GridMgr inst;
 
     public Transform startPosition;//start position for pathfinding
     public LayerMask WallMask;//layer mask for walls
@@ -19,11 +20,14 @@ public class GridMgr : MonoBehaviour
     int sizeX;//size of width
     int sizeY;//Size of heigh
 
-  
 
 
+    private void Awake()
+    {
+        inst = this;
+    }
 
-  
+
 
     private void Start()
     {
@@ -32,14 +36,14 @@ public class GridMgr : MonoBehaviour
         nodeDiameter = nodeRadius * 2;
         sizeX = Mathf.RoundToInt(gridSize.x / nodeDiameter);//Divide the grid coord by the diameter to get the size of the graph in array units.
         sizeY = Mathf.RoundToInt(gridSize.y / nodeDiameter);//^^
-       
+
         CreateGrid();//create grid
     }
 
     private void Update()
     {
         CreateGrid();
-       
+
     }
 
     void CreateGrid()
@@ -72,7 +76,6 @@ public class GridMgr : MonoBehaviour
         List<NodeMgr> neighborList = new List<NodeMgr>();//list of neighbors
         int checkX;//checks if x is in range
         int checkY;//checks if y is in range
-
         //Check the right side of the current node.
         checkX = neighbor.gridX + 1;
         checkY = neighbor.gridY;
@@ -113,9 +116,7 @@ public class GridMgr : MonoBehaviour
                 neighborList.Add(nodeArray[checkX, checkY]);//Add the grid to the available neighbors list
             }
         }
-
         return neighborList;//Return the neighbors list.
-
         */
 
         List<NodeMgr> neighbours = new List<NodeMgr>();
