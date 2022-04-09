@@ -120,12 +120,6 @@ public class BossAI : MonoBehaviour
         }
     }
 
-    //called by coworkers
-    public void Snitch()
-    {
-        followPath = true;
-    }
-
     //waits five seconds before forgeting player location
     IEnumerator DelayCollisionExit()
     {

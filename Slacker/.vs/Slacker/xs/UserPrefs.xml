@@ -1,14 +1,9 @@
 ﻿<Properties StartupConfiguration="{BBB240F4-8766-645F-2410-D1228A4C575B}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/AudioPlayerMgr.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GridMgr.cs">
     <Files>
-      <File FileName="Assets/Scripts/BossAI.cs" Line="116" Column="10" />
-      <File FileName="Assets/Scripts/CoWorkers.cs" Line="167" Column="27" />
-      <File FileName="Assets/Scripts/PathfindingMgr.cs" Line="137" Column="10" />
-      <File FileName="Assets/Scripts/GridMgr.cs" Line="5" Column="14" />
-      <File FileName="Assets/Scripts/FollowFromAbove.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/PlayerController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/GameOverCollision.cs" Line="7" Column="4" />
-      <File FileName="Assets/Scripts/AudioPlayerMgr.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Grid Mgr.cs" Line="64" Column="13" />
+      <File FileName="Assets/Scripts/Node Mgr.cs" Line="5" Column="21" />
+      <File FileName="Assets/Scripts/Pathfinding Mgr.cs" Line="7" Column="5" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -16,7 +11,7 @@
           <Node name="Slacker" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
-                <Node name="AudioPlayerMgr.cs" selected="True" />
+                <Node name="GridMgr.cs" selected="True" />
               </Node>
             </Node>
           </Node>
@@ -26,7 +21,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="a99dcc84-7a38-47d5-b65b-e1252d1c026b" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="ae24d877-9198-4b98-9777-dccae3c1107d" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
