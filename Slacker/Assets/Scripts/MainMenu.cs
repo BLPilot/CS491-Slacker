@@ -9,6 +9,12 @@ public class MainMenu : MonoBehaviour
     public BoxCollider play;
     public BoxCollider quit;
 
+    void Awake()
+    {
+        QualitySettings.vSyncCount = 0;  // VSync must be disabled
+        Application.targetFrameRate = 60;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -29,6 +35,7 @@ public class MainMenu : MonoBehaviour
 
                     else if (hit.collider.name == "Play_Buttons")
                     {
+                        SceneManager.LoadScene("Level");
                         Debug.Log("hit play");
                     }
                 }
