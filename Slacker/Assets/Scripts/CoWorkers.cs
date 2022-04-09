@@ -11,8 +11,11 @@ public class CoWorkers : MonoBehaviour
 
     public Animator animations;
 
-    //boss game object
-    public GameObject boss;
+    //coworker game object
+    public GameObject CoWorker;
+
+    //reference to boss
+    public BossAI boss;
 
     public List<GameObject> roomWaypoints;
 
@@ -37,8 +40,16 @@ public class CoWorkers : MonoBehaviour
     //keep track of current node being moved to
     public int currentNodeIndex = 0;
 
-    //reached location
-    bool reached = true;
+    //reached next node location
+    bool reached = true;    
+
+    //random waypoint to reach
+    int randomPoint;
+
+    //is a snitcher
+    public bool isSnitch;
+
+    
 
     public void Awake()
     {
@@ -46,8 +57,16 @@ public class CoWorkers : MonoBehaviour
 
     }
 
+    public void Start()
+    {
+        finalPath = new List<NodeMgr>();
+        randomPoint = Random.Range(0, roomWaypoints.Count);
+
+    }
+
     public void Update()
     {
+       
 
         if (followPath && currentNodeIndex < finalPath.Count)
         {
@@ -55,16 +74,16 @@ public class CoWorkers : MonoBehaviour
 
         }
 
-        if (finalPath == null || finalPath.Count == 0)
-        {
-            GetWaypoint();
-        }
+
+        ReachedWaypoint();
+        GetWaypoint();
+         
     }
 
     //move boss along path
     public void MoveAlongPath(List<NodeMgr> path)
     {
-        if (Vector3.Distance(finalPath[currentNodeIndex].nodePos, boss.transform.position) < 10)
+        if (Vector3.Distance(finalPath[currentNodeIndex].nodePos, CoWorker.transform.position) < 10)
         {
             reached = true;
         }
@@ -77,16 +96,16 @@ public class CoWorkers : MonoBehaviour
 
             Vector3 currentNodePos = new Vector3(finalPath[currentNodeIndex].nodePos.x, 0, finalPath[currentNodeIndex].nodePos.z);
 
-            Vector3 move = new Vector3(finalPath[currentNodeIndex].nodePos.x - boss.transform.position.x, 0, finalPath[currentNodeIndex].nodePos.z - boss.transform.position.z);//new Vector3(x,1, y);
+            Vector3 move = new Vector3(finalPath[currentNodeIndex].nodePos.x - CoWorker.transform.position.x, 0, finalPath[currentNodeIndex].nodePos.z - CoWorker.transform.position.z);//new Vector3(x,1, y);
 
             //move.Normalize();
 
             //controller.Move(move * speed * Time.deltaTime);
 
-            boss.transform.position = Vector3.MoveTowards(boss.transform.position, currentNodePos, speed * Time.deltaTime);
+            CoWorker.transform.position = Vector3.MoveTowards(CoWorker.transform.position, currentNodePos, speed * Time.deltaTime);
 
             Debug.Log(finalPath[currentNodeIndex].nodePos);
-            Debug.Log("Moving to:" + move);
+            //Debug.Log("Coworker Moving to:" + move);
 
             //face direction
             if (move != Vector3.zero)
@@ -108,25 +127,47 @@ public class CoWorkers : MonoBehaviour
 
     void GetWaypoint()
     {
-        int randomPoint = Random.Range(0, roomWaypoints.Count);
+        
 
-        finalPath = pgr.FindPathCW(boss.transform.position, roomWaypoints[randomPoint].transform.position);
+
+
+        Debug.Log("Get final path");
+        finalPath = PathfindingMgr.inst.FindPathCW(CoWorker.transform.position, roomWaypoints[randomPoint].transform.position);
+
+        followPath = true;
+        
+
+        //checking the points coworker receives
+        
+        foreach (NodeMgr n in finalPath)
+        {
+            Debug.Log(n.nodePos);
+        }
+        
 
     }
 
-    /*
+    void ReachedWaypoint()
+    {
+        if (Vector3.Distance(roomWaypoints[randomPoint].transform.position, CoWorker.transform.position) < 10)
+        {
+            
+            randomPoint = Random.Range(0, roomWaypoints.Count);
+        }
+    }
+
+    
     //checks if player enter detection zone
     private void OnTriggerStay(Collider collision)
     {
-        if(collision.gameObject.name == "Player")
+        if(collision.gameObject.name == "Player" && isSnitch)
         {
-            detectionRangeCollision = true;
-            followPath = true;
-            Debug.Log("Collided");
+            boss.Snitch();
         }
         
     }
 
+    /*
     //checks if player exits detection zone
     private void OnTriggerExit(Collider collision)
     {
