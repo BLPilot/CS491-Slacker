@@ -58,6 +58,7 @@
     <Compile Include="Assets\Scripts\GridMgr.cs" />
     <Compile Include="Assets\Scripts\BossAI.cs" />
     <Compile Include="Assets\Scripts\Heading.cs" />
+    <Compile Include="Assets\Timer.cs" />
     <Compile Include="Assets\Scripts\CoWorkers.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\NodeMgr.cs" />
@@ -72,7 +73,8 @@
     <Compile Include="Assets\Scripts\FollowFromAbove.cs" />
     <Compile Include="Assets\Scripts\AStar Stuff\Node.cs" />
     <Compile Include="Assets\Scripts\GameOverCollision.cs" />
-    <Compile Include="Assets\Timer.cs" />
+    <Compile Include="Assets\Scripts\FanRotate.cs" />
+    <Compile Include="Assets\Scripts\MainMenu.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
