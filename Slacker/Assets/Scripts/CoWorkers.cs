@@ -41,17 +41,15 @@ public class CoWorkers : MonoBehaviour
     public int currentNodeIndex = 0;
 
     //reached next node location
-    bool reached = true;
-
-    
-
-    //current waypoint index
-    int wayIndex = 0;
+    bool reached = true;    
 
     //random waypoint to reach
     int randomPoint;
 
-    int i = 0;
+    //is a snitcher
+    public bool isSnitch;
+
+    
 
     public void Awake()
     {
@@ -162,7 +160,7 @@ public class CoWorkers : MonoBehaviour
     //checks if player enter detection zone
     private void OnTriggerStay(Collider collision)
     {
-        if(collision.gameObject.name == "Player")
+        if(collision.gameObject.name == "Player" && isSnitch)
         {
             boss.Snitch();
         }
