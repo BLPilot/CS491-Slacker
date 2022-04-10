@@ -68,7 +68,7 @@ public class BossAI : MonoBehaviour
         {
             MoveAlongPath(finalPath);
   
-        }else{
+        }else if(currentNodeIndex < patrolPath.Count && patrolPath.Count > 0){
             
             MoveAlongPath(patrolPath);
             
