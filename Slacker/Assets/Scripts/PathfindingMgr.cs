@@ -118,15 +118,12 @@ public class PathfindingMgr : MonoBehaviour
 
     public List<NodeMgr> FindPathCW(Vector3 sPos, Vector3 tPos)
     {
-        Debug.Log("Hello");
 
         List<NodeMgr> FinalPath = new List<NodeMgr>();
-        Debug.Log("Creating Lists");
+      
 
         NodeMgr startNode = gridReference.GetClosestNode(sPos);//Gets the node closest to the starting position
         NodeMgr targetNode = gridReference.GetClosestNode(tPos);//Gets the node closest to the target position
-
-        Debug.Log("Creating Lists");
 
         List<NodeMgr> OpenList = new List<NodeMgr>();//List of nodes for the open list
         HashSet<NodeMgr> ClosedList = new HashSet<NodeMgr>();//closed list

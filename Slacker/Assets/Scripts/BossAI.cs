@@ -14,6 +14,9 @@ public class BossAI : MonoBehaviour
     //boss game object
     public GameObject boss;
 
+    //waypoint references
+    public List<GameObject> roomWaypoints;
+
     //boss parameters
     public float speed = 4f;
     public float turnSpeed = 180f;
@@ -27,6 +30,8 @@ public class BossAI : MonoBehaviour
     //final path of pathfinding
     public List<NodeMgr> finalPath;//final path of a star
 
+    public List<NodeMgr> patrolPath;//path for patrolling
+
     //saved path
     public List<NodeMgr> savedPath;
 
@@ -36,20 +41,40 @@ public class BossAI : MonoBehaviour
     //reached location
     bool reached = true;
 
+    //random waypoint to reach
+    int randomPoint;
+
+    //bool to patrol
+    bool isPatrolling = true;
+
     public void Awake()
     {
         inst = this;
 
     }
 
+    public void Start()
+    {
+        patrolPath = new List<NodeMgr>();
+        randomPoint = Random.Range(0, roomWaypoints.Count);
+    }
+
     public void Update()
     {
+        ReachedWaypoint();
+        GetWaypoint();
 
         if (followPath && currentNodeIndex < finalPath.Count)
         {
             MoveAlongPath(finalPath);
-
+  
+        }else{
+            
+            MoveAlongPath(patrolPath);
+            
         }
+
+
     }
 
     //move boss along path
@@ -64,12 +89,12 @@ public class BossAI : MonoBehaviour
 
         if (reached)
         {
-            float x = finalPath[currentNodeIndex].nodePos.x;
-            float y = finalPath[currentNodeIndex].nodePos.z;
+            float x = path[currentNodeIndex].nodePos.x;
+            float y = path[currentNodeIndex].nodePos.z;
 
-            Vector3 currentNodePos = new Vector3(finalPath[currentNodeIndex].nodePos.x, 0, finalPath[currentNodeIndex].nodePos.z);
+            Vector3 currentNodePos = new Vector3(path[currentNodeIndex].nodePos.x, 0, path[currentNodeIndex].nodePos.z);
 
-            Vector3 move = new Vector3(finalPath[currentNodeIndex].nodePos.x - boss.transform.position.x, 0, finalPath[currentNodeIndex].nodePos.z - boss.transform.position.z);//new Vector3(x,1, y);
+            Vector3 move = new Vector3(path[currentNodeIndex].nodePos.x - boss.transform.position.x, 0, path[currentNodeIndex].nodePos.z - boss.transform.position.z);//new Vector3(x,1, y);
 
             //move.Normalize();
 
@@ -77,7 +102,7 @@ public class BossAI : MonoBehaviour
 
             boss.transform.position = Vector3.MoveTowards(boss.transform.position, currentNodePos, speed * Time.deltaTime);
 
-            Debug.Log(finalPath[currentNodeIndex].nodePos);
+            Debug.Log(path[currentNodeIndex].nodePos);
             Debug.Log("Moving to:" + move);
 
             //face direction
@@ -134,5 +159,37 @@ public class BossAI : MonoBehaviour
         detectionRangeCollision = false;
         followPath = false;
     }
+
+    void GetWaypoint()
+    {
+
+
+
+
+        Debug.Log("Get patrol path");
+        patrolPath = PathfindingMgr.inst.FindPathCW(boss.transform.position, roomWaypoints[randomPoint].transform.position);
+
+        isPatrolling = true;
+
+
+        //checking the points coworker receives
+
+        foreach (NodeMgr n in patrolPath)
+        {
+            Debug.Log(n.nodePos);
+        }
+
+
+    }
+
+    void ReachedWaypoint()
+    {
+        if (Vector3.Distance(roomWaypoints[randomPoint].transform.position, boss.transform.position) < 10)
+        {
+
+            randomPoint = Random.Range(0, roomWaypoints.Count);
+        }
+    }
+
 
 }
