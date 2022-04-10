@@ -80,7 +80,7 @@ public class BossAI : MonoBehaviour
     //move boss along path
     public void MoveAlongPath(List<NodeMgr> path)
     {
-        if (Vector3.Distance(finalPath[currentNodeIndex].nodePos, boss.transform.position) < 10)
+        if (Vector3.Distance(path[currentNodeIndex].nodePos, boss.transform.position) < 10)
         {
             reached = true;
         }
