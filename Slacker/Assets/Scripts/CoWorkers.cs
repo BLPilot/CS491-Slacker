@@ -66,7 +66,8 @@ public class CoWorkers : MonoBehaviour
 
     public void Update()
     {
-
+        ReachedWaypoint();
+        GetWaypoint();
 
         if (followPath && currentNodeIndex < finalPath.Count)
         {
@@ -75,8 +76,7 @@ public class CoWorkers : MonoBehaviour
         }
 
 
-        ReachedWaypoint();
-        GetWaypoint();
+        
 
     }
 
