@@ -2,7 +2,7 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/CoWorkers.cs">
     <Files>
       <File FileName="Assets/Scripts/BossAI.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/PathfindingMgr.cs" Line="213" Column="2" />
+      <File FileName="Assets/Scripts/PathfindingMgr.cs" />
       <File FileName="Assets/Scripts/GridMgr.cs" />
       <File FileName="Assets/Scripts/CoWorkers.cs" Line="1" Column="1" NotebookId="1" />
     </Files>
@@ -22,7 +22,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="df7c7045-811f-468a-a756-b5a8a6d41033" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="20391813-6f75-4498-80fb-cd87ce8fa754" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
