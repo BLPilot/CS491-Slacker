@@ -105,7 +105,7 @@ public class CoWorkers : MonoBehaviour
 
             CoWorker.transform.position = Vector3.MoveTowards(CoWorker.transform.position, currentNodePos, speed * Time.deltaTime);
 
-            Debug.Log(finalPath[currentNodeIndex].nodePos);
+            //Debug.Log(finalPath[currentNodeIndex].nodePos);
             //Debug.Log("Coworker Moving to:" + move);
 
             //face direction
@@ -132,7 +132,7 @@ public class CoWorkers : MonoBehaviour
 
 
 
-        Debug.Log("Get final path");
+        //Debug.Log("Get final path");
         finalPath = PathfindingMgr.inst.FindPathCW(CoWorker.transform.position, roomWaypoints[randomPoint].transform.position);
 
         followPath = true;
@@ -140,10 +140,10 @@ public class CoWorkers : MonoBehaviour
 
         //checking the points coworker receives
 
-        foreach (NodeMgr n in finalPath)
+        /*foreach (NodeMgr n in finalPath)
         {
             Debug.Log(n.nodePos);
-        }
+        } */
 
 
     }
