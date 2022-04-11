@@ -12,11 +12,15 @@ public class Timer : MonoBehaviour
     public int gameSeconds = 0;
     public TextMeshProUGUI stopwatch;
 
+    public TextMeshProUGUI objective;
+
     public BossAI boss;
     public bool updatingSpeed = false;
 
     public GameOverCollision gameOverCheck;
     public GameObject winnerPOV;
+
+    public GameObject exitDoorBox;
 
     // Start is called before the first frame update
     void Start()
@@ -36,10 +40,12 @@ public class Timer : MonoBehaviour
 
         BossGoBrrr();
 
-        if (!gameOverCheck.gameOver && gameMinutes == 0 && gameSeconds == 0)
+        if (gameMinutes == 0 && gameSeconds == 0)
         {
-            gameOverCheck.gameOver = true;
-            winnerPOV.SetActive(true);
+            //gameOverCheck.gameOver = true;
+            //winnerPOV.SetActive(true);
+            objective.text = "The day is over! Get out the building!";
+            ClosingTime();
         }
     }
 
@@ -55,5 +61,11 @@ public class Timer : MonoBehaviour
         {
             boss.speed = 7.65f;
         }
+    }
+
+    // enable the exit!
+    void ClosingTime()
+    {
+        exitDoorBox.SetActive(true);
     }
 }
