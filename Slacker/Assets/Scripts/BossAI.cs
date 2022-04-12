@@ -57,6 +57,8 @@ public class BossAI : MonoBehaviour
     {
         patrolPath = new List<NodeMgr>();
         randomPoint = Random.Range(0, roomWaypoints.Count);
+
+       
     }
 
     public void Update()

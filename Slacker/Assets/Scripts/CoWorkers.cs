@@ -62,10 +62,14 @@ public class CoWorkers : MonoBehaviour
         finalPath = new List<NodeMgr>();
         randomPoint = Random.Range(0, roomWaypoints.Count);
 
+        
+
     }
 
     public void Update()
     {
+        followPath = true;
+
         ReachedWaypoint();
         GetWaypoint();
 
@@ -76,7 +80,7 @@ public class CoWorkers : MonoBehaviour
         }
 
 
-        
+  
 
     }
 
@@ -135,7 +139,7 @@ public class CoWorkers : MonoBehaviour
         Debug.Log("Get final path");
         finalPath = PathfindingMgr.inst.FindPathCW(CoWorker.transform.position, roomWaypoints[randomPoint].transform.position);
 
-        followPath = true;
+       
 
 
         //checking the points coworker receives
