@@ -62,13 +62,13 @@ public class CoWorkers : MonoBehaviour
         finalPath = new List<NodeMgr>();
         randomPoint = Random.Range(0, roomWaypoints.Count);
 
-        
+        followPath = false;
 
     }
 
     public void Update()
     {
-        followPath = true;
+      
 
         ReachedWaypoint();
         GetWaypoint();
@@ -79,8 +79,8 @@ public class CoWorkers : MonoBehaviour
 
         }
 
+        followPath = true;
 
-  
 
     }
 
