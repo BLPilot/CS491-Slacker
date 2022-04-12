@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameOverCollision : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class GameOverCollision : MonoBehaviour
             gameOver = true;
             gameOverScreen.SetActive(gameOver);
             Debug.Log("Collided GameOver");
+            SceneManager.LoadScene("Fired");
         }
 
     }
