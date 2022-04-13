@@ -56,7 +56,7 @@ public class BossAI : MonoBehaviour
     public void Start()
     {
         patrolPath = new List<NodeMgr>();
-        randomPoint = Random.Range(0, roomWaypoints.Count);
+        randomPoint = Random.Range(0, roomWaypoints.Count - 1);
 
        
     }
@@ -189,7 +189,7 @@ public class BossAI : MonoBehaviour
         if (Vector3.Distance(roomWaypoints[randomPoint].transform.position, boss.transform.position) < 10)
         {
 
-            randomPoint = Random.Range(0, roomWaypoints.Count);
+            randomPoint = Random.Range(0, roomWaypoints.Count - 1);
         }
     }
 
