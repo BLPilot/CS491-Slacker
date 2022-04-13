@@ -12,8 +12,8 @@ public class GameOverCollision : MonoBehaviour
     {
         if (collision.gameObject.name == "Player" && !gameOver)
         {
-            gameOver = true;
-            gameOverScreen.SetActive(gameOver);
+            //gameOver = true;
+            //gameOverScreen.SetActive(gameOver);
             Debug.Log("Collided GameOver");
             SceneManager.LoadScene("Fired");
         }

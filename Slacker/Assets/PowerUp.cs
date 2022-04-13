@@ -24,6 +24,8 @@ public class PowerUp : MonoBehaviour
     //save old speed
     float oldSpeed;
 
+    public AudioSource sound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +45,7 @@ public class PowerUp : MonoBehaviour
 
             coffee.SetActive(false);
             player.speed = boss.speed + speedIncrease;
+            sound.Play();
             StartCoroutine(DelayPowerRespawn());
             StartCoroutine(DelayActiveTimeDisable());
 
