@@ -47,6 +47,9 @@ public class BossAI : MonoBehaviour
     //bool to patrol
     bool isPatrolling = true;
 
+    //current position
+    Vector3 prevPos;
+
     public void Awake()
     {
         inst = this;
@@ -65,6 +68,8 @@ public class BossAI : MonoBehaviour
     {
         ReachedWaypoint();
         GetWaypoint();
+
+        prevPos = boss.transform.position;
 
         if (followPath && currentNodeIndex < finalPath.Count)
         {
@@ -189,6 +194,11 @@ public class BossAI : MonoBehaviour
         if (Vector3.Distance(roomWaypoints[randomPoint].transform.position, boss.transform.position) < 10)
         {
 
+            randomPoint = Random.Range(0, roomWaypoints.Count - 1);
+        }
+
+        if(prevPos == boss.transform.position)
+        {
             randomPoint = Random.Range(0, roomWaypoints.Count - 1);
         }
     }
