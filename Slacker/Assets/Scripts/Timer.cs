@@ -55,11 +55,11 @@ public class Timer : MonoBehaviour
         if (gameMinutes == 2 && gameSeconds == 0)
         {
 
-            boss.speed = 7.3f;
+            boss.speed = 8.5f;
         }
         else if (gameMinutes == 1 && gameSeconds == 0)
         {
-            boss.speed = 7.65f;
+            boss.speed = 8.75f;
         }
     }
 
