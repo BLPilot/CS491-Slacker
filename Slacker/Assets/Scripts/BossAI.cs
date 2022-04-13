@@ -109,8 +109,8 @@ public class BossAI : MonoBehaviour
 
             boss.transform.position = Vector3.MoveTowards(boss.transform.position, currentNodePos, speed * Time.deltaTime);
 
-            Debug.Log(path[currentNodeIndex].nodePos);
-            Debug.Log("Moving to:" + move);
+            //Debug.Log(path[currentNodeIndex].nodePos);
+            //Debug.Log("Moving to:" + move);
 
             //face direction
             if (move != Vector3.zero)
@@ -137,7 +137,7 @@ public class BossAI : MonoBehaviour
         {
             detectionRangeCollision = true;
             followPath = true;
-            Debug.Log("Collided");
+            //Debug.Log("Collided");
         }
 
     }
@@ -173,7 +173,7 @@ public class BossAI : MonoBehaviour
 
 
 
-        Debug.Log("Get patrol path");
+        //Debug.Log("Get patrol path");
         patrolPath = PathfindingMgr.inst.FindPathCW(boss.transform.position, roomWaypoints[randomPoint].transform.position);
 
         isPatrolling = true;
@@ -181,10 +181,10 @@ public class BossAI : MonoBehaviour
 
         //checking the points coworker receives
 
-        foreach (NodeMgr n in patrolPath)
+        /*foreach (NodeMgr n in patrolPath)
         {
             Debug.Log(n.nodePos);
-        }
+        } */
 
 
     }
