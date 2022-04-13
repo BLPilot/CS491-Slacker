@@ -60,7 +60,7 @@ public class CoWorkers : MonoBehaviour
     public void Start()
     {
         finalPath = new List<NodeMgr>();
-        randomPoint = Random.Range(0, roomWaypoints.Count);
+        randomPoint = Random.Range(0, roomWaypoints.Count - 1);
 
         followPath = false;
 
@@ -157,7 +157,7 @@ public class CoWorkers : MonoBehaviour
         if (Vector3.Distance(roomWaypoints[randomPoint].transform.position, CoWorker.transform.position) < 10)
         {
 
-            randomPoint = Random.Range(0, roomWaypoints.Count);
+            randomPoint = Random.Range(0, roomWaypoints.Count - 1);
         }
     }
 
