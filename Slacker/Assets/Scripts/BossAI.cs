@@ -173,7 +173,7 @@ public class BossAI : MonoBehaviour
 
 
 
-        Debug.Log("Get patrol path");
+        //Debug.Log("Get patrol path");
         patrolPath = PathfindingMgr.inst.FindPathCW(boss.transform.position, roomWaypoints[randomPoint].transform.position);
 
         isPatrolling = true;

@@ -66,13 +66,11 @@
     <Compile Include="Assets\Scripts\ClosingTime.cs" />
     <Compile Include="Assets\CanvasScript.cs" />
     <Compile Include="Assets\Scripts\PathfindingMgr.cs" />
-    <Compile Include="Assets\Scripts\AStar Stuff\AStarMgr.cs" />
     <Compile Include="Assets\Scripts\EmptyScripts\AIMgr.cs" />
     <Compile Include="Assets\Scripts\FanRotate.cs" />
     <Compile Include="Assets\Scripts\ObjectInteraction.cs" />
     <Compile Include="Assets\Scripts\EmptyScripts\Movement.cs" />
     <Compile Include="Assets\Scripts\Interaction.cs" />
-    <Compile Include="Assets\Scripts\AStar Stuff\Route.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\PowerUp.cs" />
     <Compile Include="Assets\Scripts\FollowFromAbove.cs" />
